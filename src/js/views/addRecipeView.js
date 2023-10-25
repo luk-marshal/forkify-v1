@@ -9,6 +9,7 @@ class AddRecipeView extends View {
   _btnOpen = document.querySelector('.nav__btn--add-recipe');
   _btnClose = document.querySelector('.btn--close-modal');
   _btnUpload = document.querySelector('.upload__btn');
+  _btnRemove = document.querySelector('.nav__btn--remove-recipe');
 
   constructor() {
     super();
@@ -36,6 +37,16 @@ class AddRecipeView extends View {
       const dataArr = [...new FormData(this)];
       const data = Object.fromEntries(dataArr);
       handler(data);
+    });
+  }
+
+  addHandlerDelete(handler) {
+    this._btnRemove.addEventListener('click', function (e) {
+      // e.preventDefault();
+      // const dataArr = [...new FormData(this)];
+      // const data = Object.fromEntries(dataArr);
+      // handler(data);
+      handler();
     });
   }
 

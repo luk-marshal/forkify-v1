@@ -1,7 +1,7 @@
 import { async } from 'regenerator-runtime';
 import { API_URL, RES_PER_PAGE, KEY } from './config';
 // import { getJSON, sendJSON } from './helpers';
-import { AJAX } from './helpers';
+import { AJAX, deleteJSON } from './helpers';
 
 export const state = {
   recipe: {},
@@ -148,6 +148,20 @@ export const uploadRecipe = async function (newRecipe) {
     state.recipe = createRecipeObject(data);
     toggleBookmark(state.recipe);
   } catch (err) {
+    throw err;
+  }
+};
+
+export const deleteRecipe = async function (id) {
+  try {
+    const response = await deleteJSON(`${API_URL}${id}?key=${KEY}`);
+    console.warn(`Deleted recipe id: ${id}`, response);
+
+    if (state.bookmarks.some(bookmark => bookmark.id === id))
+      state.recipe.bookmarked = true;
+    else state.recipe.bookmarked = false;
+  } catch (err) {
+    console.warn(`${err} 💥💥💥💥`);
     throw err;
   }
 };

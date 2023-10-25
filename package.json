@@ -9,13 +9,12 @@
   "author": "Lukasz Marszalek",
   "license": "ISC",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.10.0",
-    "parcel": "^2.10.0"
+    "@parcel/transformer-sass": "^2.10.1",
+    "parcel": "latest"
   },
   "dependencies": {
     "core-js": "^3.33.0",
     "fraction.js": "^4.3.7",
-    "fractional": "^1.0.0",
     "regenerator-runtime": "^0.13.11"
   }
 }

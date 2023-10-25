@@ -103,6 +103,19 @@ const controlAddRecipe = async function (newRecipe) {
   }
 };
 
+const controlRemoveRecipe = async function () {
+  try {
+    const id = window.location.hash.slice(1);
+    if (!id) return;
+    await model.deleteRecipe(id);
+    controlAddBookmark();
+    // window.location.assign('');
+  } catch (err) {
+    recipeView.renderError();
+    console.warn(`${err} 💥💥💥💥`);
+  }
+};
+
 const newFeature = function () {
   console.log('Welcome to the application');
 };
@@ -115,6 +128,7 @@ const init = function () {
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
   addRecipeView.addHandlerUpload(controlAddRecipe);
+  addRecipeView.addHandlerDelete(controlRemoveRecipe);
   newFeature();
 };
 init();
